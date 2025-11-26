@@ -22,7 +22,7 @@ function MainPage({ darkMode }) {
         <div className="w-full flex">
           <div className="w-1/2 flex items-center justify-center">
             <img
-              src="/src/assets/profile-picture.png"
+              src="/profile-picture.png"
               alt="Profile"
               className={`rounded-[250px] border-4 ${borderClass}`}
             />
@@ -69,7 +69,7 @@ function MainPage({ darkMode }) {
               title="Notes WebApp"
               date="2024"
               description="A simple and clean notes-taking web app built using HTML, CSS, and JavaScript."
-              image="/src/assets/projects/notes.png"
+              image="/projects/notes.png"
               link="https://anshggss.github.io/notes-webapp/"
               darkMode={darkMode}
             />
@@ -77,7 +77,7 @@ function MainPage({ darkMode }) {
               title="Movies WebApp"
               date="2024"
               description="A movie browsing interface featuring a curated list and filtering options."
-              image="/src/assets/projects/movies.png"
+              image="/projects/movies.png"
               link="https://anshggss.github.io/Movies-WebApp/"
               darkMode={darkMode}
             />
@@ -85,7 +85,7 @@ function MainPage({ darkMode }) {
               title="Chat WebApp"
               date="2024"
               description="A simple chat interface built as a privacy-friendly messaging alternative."
-              image="/src/assets/projects/chat.png"
+              image="/projects/chat.png"
               link="https://anshggss.github.io/Chat-WebApp/"
               darkMode={darkMode}
             />
@@ -93,7 +93,7 @@ function MainPage({ darkMode }) {
               title="UploadNFilter"
               date="2025"
               description="Excel filtering and transformation tool built using JavaScript, designed to process large order data easily."
-              image="/src/assets/projects/uploadnfilter.png"
+              image="/projects/uploadnfilter.png"
               link="https://uploadnfilter.vercel.app/"
               darkMode={darkMode}
             />
@@ -101,7 +101,7 @@ function MainPage({ darkMode }) {
               title="Srikanth Nursery Website"
               date="2025"
               description="Full-stack nursery management and product showcase website. Frontend + backend build."
-              image="/src/assets/projects/nursery.png"
+              image="/projects/nursery.png"
               link="http://lakshmiassociates.com/"
               darkMode={darkMode}
             />
@@ -109,7 +109,7 @@ function MainPage({ darkMode }) {
               title="The Industrial Chemist (iOS)"
               date="2025"
               description="A Swift-based iOS app built for academic practical experiments in chemistry."
-              image="/src/assets/projects/industrialchemist.png"
+              image="/projects/industrialchemist.png"
               link="https://github.com/anshggss/The-Industrial-Chemist"
               darkMode={darkMode}
             />

@@ -10,7 +10,7 @@ function NavBar({ darkMode, setDarkMode }) {
 
   const handleResumeDownload = () => {
     const link = document.createElement("a");
-    link.href = "/src/assets/resume.pdf";
+    link.href = "/resume.pdf";
     link.download = "Resume.pdf";
     link.click();
   };

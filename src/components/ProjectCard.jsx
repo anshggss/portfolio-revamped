@@ -43,7 +43,7 @@ function ProjectCard({ title, date, description, image, link, darkMode }) {
         {link && (
           <a href={link} target="_blank" rel="noopener noreferrer">
             <img
-              src="/src/assets/share.png"
+              src="/share.png"
               alt="redirect"
               className="w-4 h-4 absolute bottom-8 right-8 cursor-pointer"
             />
