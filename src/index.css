@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+html {
+  transition:
+    background-color 0.5s,
+    color 0.5s;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
