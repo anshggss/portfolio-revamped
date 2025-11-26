@@ -8,6 +8,13 @@ function NavBar({ darkMode, setDarkMode }) {
     window.open("https://linktr.ee/shadyggs", "_blank");
   };
 
+  const handleResumeDownload = () => {
+    const link = document.createElement("a");
+    link.href = "/src/assets/resume.pdf";
+    link.download = "Resume.pdf";
+    link.click();
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -23,7 +30,6 @@ function NavBar({ darkMode, setDarkMode }) {
     }
   };
 
-  // Conditional classes based on darkMode, keeping your NavBar structure
   const containerClass = isScrolled
     ? `backdrop-blur-xl ${darkMode ? "bg-gray-950/80 shadow-gray-700" : "bg-white/10 shadow-lg"} rounded-3xl px-6 py-4`
     : "";
@@ -93,6 +99,7 @@ function NavBar({ darkMode, setDarkMode }) {
         {/* Resume Button */}
         <div>
           <button
+            onClick={handleResumeDownload}
             className={`text-white ${resumeBg} px-[10px] py-[6px] rounded-4xl cursor-pointer hover:scale-105 transition-all hover:shadow-2xl`}
           >
             <ShinyText
