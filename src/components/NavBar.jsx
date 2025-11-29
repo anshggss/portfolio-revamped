@@ -3,6 +3,7 @@ import ShinyText from "../component/ShinyText";
 
 function NavBar({ darkMode, setDarkMode }) {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleContact = () => {
     window.open("https://linktr.ee/shadyggs", "_blank");
@@ -27,11 +28,14 @@ function NavBar({ darkMode, setDarkMode }) {
     const section = document.getElementById(id);
     if (section) {
       section.scrollIntoView({ behavior: "smooth" });
+      setIsOpen(false);
     }
   };
 
   const containerClass = isScrolled
-    ? `backdrop-blur-xl ${darkMode ? "bg-gray-950/80 shadow-gray-700" : "bg-white/10 shadow-lg"} rounded-3xl px-6 py-4`
+    ? `backdrop-blur-xl ${
+        darkMode ? "bg-gray-950/80 shadow-gray-700" : "bg-white/10 shadow-lg"
+      } rounded-3xl px-6 py-4`
     : "";
 
   const textClass = darkMode ? "text-gray-100" : "text-gray-900";
@@ -44,36 +48,36 @@ function NavBar({ darkMode, setDarkMode }) {
 
   return (
     <div
-      className={`sticky top-8 z-50 transition-all duration-300 mx-32 ${containerClass}`}
+      className={`sticky top-8 z-50 transition-all duration-300 mx-4 md:mx-32 ${containerClass}`}
     >
       <div className="flex justify-between items-center">
-        {/* Theme toggle button */}
-        <div>
-          <button
-            onClick={() => setDarkMode(!darkMode)}
-            className={`p-2 rounded-3xl ${themeButtonBg} hover:scale-110 transition-all cursor-pointer`}
+        {/* Theme toggle */}
+        <button
+          onClick={() => setDarkMode(!darkMode)}
+          className={`p-2 rounded-3xl ${themeButtonBg} hover:scale-110 transition-all cursor-pointer`}
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 29 29"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className={darkMode ? "text-white" : "text-black"}
           >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 29 29"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className={darkMode ? "text-white" : "text-black"}
-            >
-              <path
-                d="M26.6975 15.4613C26.4812 17.8018 25.6028 20.0323 24.1651 21.8919C22.7274 23.7514 20.7898 25.163 18.5791 25.9615C16.3684 26.7601 13.976 26.9125 11.6818 26.4009C9.38765 25.8894 7.28661 24.735 5.62456 23.073C3.9625 21.4109 2.80816 19.3099 2.29662 17.0157C1.78508 14.7216 1.93748 12.3292 2.736 10.1184C3.53453 7.90773 4.94614 5.97016 6.80566 4.53244C8.66519 3.09473 10.8957 2.21633 13.2362 2.00003C11.8659 3.8539 11.2065 6.13803 11.378 8.43698C11.5494 10.7359 12.5403 12.897 14.1704 14.5271C15.8005 16.1572 17.9616 17.1481 20.2606 17.3196C22.5595 17.491 24.8436 16.8316 26.6975 15.4613Z"
-                stroke="currentColor"
-                strokeWidth="4"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
-        </div>
+            <path
+              d="M26.6975 15.4613C26.4812 17.8018 25.6028 20.0323 24.1651 21.8919C22.7274 23.7514 20.7898 25.163 18.5791 25.9615C16.3684 26.7601 13.976 26.9125 11.6818 26.4009C9.38765 25.8894 7.28661 24.735 5.62456 23.073C3.9625 21.4109 2.80816 19.3099 2.29662 17.0157C1.78508 14.7216 1.93748 12.3292 2.736 10.1184C3.53453 7.90773 4.94614 5.97016 6.80566 4.53244C8.66519 3.09473 10.8957 2.21633 13.2362 2.00003C11.8659 3.8539 11.2065 6.13803 11.378 8.43698C11.5494 10.7359 12.5403 12.897 14.1704 14.5271C15.8005 16.1572 17.9616 17.1481 20.2606 17.3196C22.5595 17.491 24.8436 16.8316 26.6975 15.4613Z"
+              stroke="currentColor"
+              strokeWidth="4"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
 
-        {/* Menu */}
-        <div className={`flex gap-8 font-extralight items-center ${textClass}`}>
+        {/* Desktop Menu */}
+        <div
+          className={`hidden md:flex gap-8 font-extralight items-center ${textClass}`}
+        >
           {["home", "projects", "contact"].map((section) => (
             <button
               key={section}
@@ -96,21 +100,54 @@ function NavBar({ darkMode, setDarkMode }) {
           ))}
         </div>
 
-        {/* Resume Button */}
-        <div>
+        {/* Resume - Desktop */}
+        <button
+          onClick={handleResumeDownload}
+          className={`hidden md:block text-white ${resumeBg} px-[10px] py-[6px] rounded-4xl cursor-pointer hover:scale-105 transition-all hover:shadow-2xl`}
+        >
+          <ShinyText text="Resume" disabled={false} speed={3} />
+        </button>
+
+        {/* Mobile Hamburger */}
+        <button
+          className="md:hidden flex flex-col gap-[3px]"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          <div className={`h-[3px] w-6 rounded bg-current ${textClass}`}></div>
+          <div className={`h-[3px] w-6 rounded bg-current ${textClass}`}></div>
+          <div className={`h-[3px] w-6 rounded bg-current ${textClass}`}></div>
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      {isOpen && (
+        <div
+          className={`md:hidden mt-4 flex flex-col gap-4 p-4 rounded-2xl ${
+            darkMode ? "bg-gray-900" : "bg-white"
+          } shadow-lg transition-all`}
+        >
+          {["home", "projects", "contact"].map((section) => (
+            <button
+              key={section}
+              onClick={() =>
+                section === "contact"
+                  ? handleContact()
+                  : scrollToSection(section)
+              }
+              className={`text-lg ${textClass} ${hoverTextClass}`}
+            >
+              {section.charAt(0).toUpperCase() + section.slice(1)}
+            </button>
+          ))}
+
           <button
             onClick={handleResumeDownload}
-            className={`text-white ${resumeBg} px-[10px] py-[6px] rounded-4xl cursor-pointer hover:scale-105 transition-all hover:shadow-2xl`}
+            className={`text-white ${resumeBg} mt-2 px-[10px] py-[8px] rounded-xl cursor-pointer hover:scale-105 transition-all`}
           >
-            <ShinyText
-              text="Resume"
-              disabled={false}
-              speed={3}
-              className="custom-class"
-            />
+            Resume
           </button>
         </div>
-      </div>
+      )}
     </div>
   );
 }

@@ -14,57 +14,57 @@ function MainPage({ darkMode }) {
 
   return (
     <div
-      className={`flex flex-col justify-baseline transition-colors duration-500 ${bgClass}`}
+      className={`flex flex-col transition-colors duration-500 ${bgClass}`}
       id="home"
     >
-      <div className="w-full py-24 flex flex-col gap-64">
+      <div className="w-full py-16 md:py-24 flex flex-col gap-32 md:gap-64">
         {/* Hero Section */}
-        <div className="w-full flex">
-          <div className="w-1/2 flex items-center justify-center">
+        <div className="w-full flex flex-col md:flex-row items-center gap-12 md:gap-0 px-6 md:px-0">
+          {/* Profile Image */}
+          <div className="w-full md:w-1/2 flex justify-center">
             <img
               src="/profile-picture.png"
               alt="Profile"
-              className={`rounded-[250px] border-4 ${borderClass}`}
+              className={`rounded-full border-4 ${borderClass} w-48 h-48 md:w-[350px] md:h-[350px] object-cover`}
             />
           </div>
 
+          {/* Text */}
           <div
-            className={`w-1/2 flex flex-col items-center justify-center transition-colors duration-500 ${textClass}`}
+            className={`w-full md:w-1/2 flex flex-col items-center text-center md:text-left md:items-start gap-8 px-6 md:px-0 ${textClass}`}
           >
-            <div className="w-full flex flex-col gap-12">
-              <div className="flex flex-col gap-4">
-                <div className="font-extrabold text-5xl flex">
-                  <BlurText
-                    text="Hi, I am Ansh Mani Tripathi"
-                    delay={150}
-                    animateBy="words"
-                    direction="top"
-                    onAnimationComplete={handleAnimationComplete}
-                    className="text-5xl"
-                  />
-                </div>
-                <div className="font-extralight flex">
-                  📍 Based in Lucknow, Uttar Pradesh
-                </div>
+            <div className="flex flex-col gap-3">
+              <div className="font-extrabold text-4xl md:text-5xl">
+                <BlurText
+                  text="Hi, I am Ansh Mani Tripathi"
+                  delay={150}
+                  animateBy="words"
+                  direction="top"
+                  onAnimationComplete={handleAnimationComplete}
+                  className="text-4xl md:text-5xl"
+                />
               </div>
 
-              <div className="font-light flex">
-                A web developer, with inclination towards networking and devops
+              <div className="font-extralight text-lg md:text-xl">
+                📍 Based in Lucknow, Uttar Pradesh
               </div>
+            </div>
+
+            <div className="font-light text-base md:text-lg">
+              A web developer, with inclination towards networking and devops
             </div>
           </div>
         </div>
 
         {/* Projects Section */}
-        <div id="projects" className="flex flex-col items-center mx-40">
+        <div id="projects" className="flex flex-col items-center px-6 md:px-40">
           <div
-            className={`text-4xl font-semibold mb-10 transition-colors duration-500 ${textClass}`}
+            className={`text-3xl md:text-4xl font-semibold mb-10 ${textClass}`}
           >
             Projects
           </div>
 
-          <div className="flex flex-col gap-16">
-            {/* Project Cards */}
+          <div className="flex flex-col gap-12 md:gap-16 w-full max-w-4xl">
             <ProjectCard
               title="Notes WebApp"
               date="2024"
@@ -119,9 +119,9 @@ function MainPage({ darkMode }) {
 
       {/* Footer */}
       <div
-        className={`flex justify-center font-sans font-extralight py-2 transition-colors duration-500 ${textClass}`}
+        className={`flex justify-center text-center font-extralight py-4 text-sm md:text-base ${textClass}`}
       >
-        <div>Website designed and built by me</div>
+        Website designed and built by me
       </div>
     </div>
   );
