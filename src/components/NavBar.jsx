@@ -11,8 +11,8 @@ function NavBar({ darkMode, setDarkMode }) {
 
   const handleResumeDownload = () => {
     const link = document.createElement("a");
-    link.href = "/resume.pdf";
-    link.download = "Resume.pdf";
+    link.href = "/CV_Ansh.pdf";
+    link.download = "CV_Ansh.pdf";
     link.click();
   };
 

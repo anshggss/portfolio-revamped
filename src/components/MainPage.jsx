@@ -91,26 +91,74 @@ function MainPage({ darkMode }) {
             />
             <ProjectCard
               title="UploadNFilter"
-              date="2025"
-              description="Excel filtering and transformation tool built using JavaScript, designed to process large order data easily."
+              date="February 2025 – March 2026"
+              description="A spreadsheet formatter built for a business. Takes raw order data and customer files, processes and sorts orders, and outputs a formatted spreadsheet. Built with React + Vite and Node.js + Express.js."
               image="/projects/uploadnfilter.png"
               link="https://uploadnfilter.vercel.app/"
               darkMode={darkMode}
             />
             <ProjectCard
-              title="Srikanth Nursery Website"
-              date="2025"
-              description="Full-stack nursery management and product showcase website. Frontend + backend build."
-              image="/projects/nursery.png"
-              link="http://lakshmiassociates.com/"
+              title="Garage Band"
+              date="May 2025 – July 2025"
+              description="An Unreal Engine simulation that lets users configure and preview car customisations in real time. Supports swapping components such as doors, tyres, lights, and body colour to visualise how a vehicle will look post-modification. Developed as a freelance project."
+              image="/projects/garageband.png"
+              link="https://github.com/anshggss/GarageBand"
               darkMode={darkMode}
             />
             <ProjectCard
               title="The Industrial Chemist (iOS)"
-              date="2025"
-              description="A Swift-based iOS app built for academic practical experiments in chemistry."
+              date="August 2025 – April 2026"
+              description="An iOS application with simulations of industry chemistry reactions from the NCERT curriculum. Gamifies learning with daily streaks and leaderboards. Built with Swift and Firebase."
               image="/projects/industrialchemist.png"
               link="https://github.com/anshggss/The-Industrial-Chemist"
+              darkMode={darkMode}
+            />
+            <ProjectCard
+              title="Srikanth Nursery & Lakshmi Associates"
+              date="October 2025 – April 2026"
+              description="A business website for a horticulture and landscaping firm. Features a filterable project portfolio, service categorization, and client showcase. Built with React + Vite, Tailwind CSS, Node.js + Express.js, and Supabase (PostgreSQL)."
+              image="/projects/nursery.png"
+              link="https://www.lakshmiassociates.com/"
+              darkMode={darkMode}
+            />
+            <ProjectCard
+              title="Box Game"
+              date="February 2026 – Present"
+              description="A multiplayer web game built with HTML, CSS, and JavaScript. The server is built using Node.js with a client-server architecture. The rendering pipeline was built from the ground up using frame-by-frame object state calculation."
+              image="/projects/boxgame.png"
+              link="https://boxgame.shadyggs.xyz/"
+              darkMode={darkMode}
+            />
+            <ProjectCard
+              title="WorkNovasLLC Billing"
+              date="March 2026 – Present"
+              description="A billing management system built for a headhunting firm to manage and track payments for their C2C workers. Built with React + Vite for the frontend and Node.js + Express.js for the backend, deployed on Vercel."
+              image="/projects/wnllcbilling.png"
+              link="https://billing.dctechworks.net/"
+              darkMode={darkMode}
+            />
+            <ProjectCard
+              title="WorkNovasLLC Taki"
+              date="March 2026 – Present"
+              description="A role-based candidate submission platform for a headhunting firm. Features real-time WebSocket notifications, JWT-based auth with role-scoped access, and a PostgreSQL database. Built with React + Vite (TypeScript) and Node.js + Express.js."
+              image="/projects/wnllctaki.png"
+              link="https://taki-pied.vercel.app/"
+              darkMode={darkMode}
+            />
+            <ProjectCard
+              title="Manga Scraper"
+              date="April 2026"
+              description="A Python web scraper that downloads One Piece manga chapters and compiles them into PDF files. Scrapes page images, deduplicates while preserving order, and outputs a single PDF per chapter. Built with BeautifulSoup, Requests, and Pillow."
+              image="/projects/placeholder.png"
+              link="https://github.com/anshggss/one-piece-scraper"
+              darkMode={darkMode}
+            />
+            <ProjectCard
+              title="Meter Logger"
+              date="April 2026"
+              description="An iOS application that tracks and splits electricity bills across multiple flats and rooms. Calculates each roommate's share proportionally and saves bill cycle snapshots to history using UserDefaults. Built with SwiftUI. Submission for the Swift Student Challenge 2026."
+              image="/projects/placeholder.png"
+              link="https://github.com/anshggss/Meter-Logger"
               darkMode={darkMode}
             />
           </div>
