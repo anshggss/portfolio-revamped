@@ -1,154 +1,207 @@
 import { useState, useEffect } from "react";
-import ShinyText from "../component/ShinyText";
 
-function NavBar({ darkMode, setDarkMode }) {
+const MONO = "'JetBrains Mono', monospace";
+
+function NavBar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleContact = () => {
-    window.open("https://linktr.ee/shadyggs", "_blank");
-  };
-
-  const handleResumeDownload = () => {
-    const link = document.createElement("a");
-    link.href = "/CV_Ansh.pdf";
-    link.download = "CV_Ansh.pdf";
-    link.click();
-  };
-
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setIsScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const scrollToSection = (id) => {
-    const section = document.getElementById(id);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
-      setIsOpen(false);
-    }
+  const scrollTo = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    setIsOpen(false);
   };
 
-  const containerClass = isScrolled
-    ? `backdrop-blur-xl ${
-        darkMode ? "bg-gray-950/80 shadow-gray-700" : "bg-white/10 shadow-lg"
-      } rounded-3xl px-6 py-4`
-    : "";
+  const downloadResume = () => {
+    const a = document.createElement("a");
+    a.href = "/resume.pdf";
+    a.download = "resume.pdf";
+    a.click();
+  };
 
-  const textClass = darkMode ? "text-gray-100" : "text-gray-900";
-  const afterClass = darkMode ? "after:bg-white" : "after:bg-black";
-  const hoverTextClass = darkMode
-    ? "hover:text-gray-300"
-    : "hover:text-gray-500";
-  const themeButtonBg = darkMode ? "bg-gray-800" : "bg-gray-200";
-  const resumeBg = darkMode ? "bg-gray-700" : "bg-gray-800";
+  const openContact = () => window.open("https://linktr.ee/shadyggs", "_blank");
+
+  const navLinks = [
+    { label: "Work", id: "projects" },
+    { label: "About", id: "about" },
+    { label: "Skills", id: "skills" },
+    { label: "Exp", id: "experience" },
+  ];
 
   return (
-    <div
-      className={`sticky top-8 z-50 transition-all duration-300 mx-4 md:mx-32 ${containerClass}`}
+    <nav
+      style={{
+        position: "sticky",
+        top: "24px",
+        zIndex: 50,
+        maxWidth: "1200px",
+        margin: "0 auto",
+        padding: "0 24px",
+      }}
     >
-      <div className="flex justify-between items-center">
-        {/* Theme toggle */}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          padding: isScrolled ? "12px 20px" : "16px 0",
+          borderRadius: "4px",
+          background: isScrolled ? "rgba(19,19,19,0.92)" : "transparent",
+          backdropFilter: isScrolled ? "blur(12px)" : "none",
+          border: isScrolled ? "1px solid rgba(255,255,255,0.06)" : "none",
+          transition: "all 0.3s ease",
+        }}
+      >
         <button
-          onClick={() => setDarkMode(!darkMode)}
-          className={`p-2 rounded-3xl ${themeButtonBg} hover:scale-110 transition-all cursor-pointer`}
+          onClick={() => scrollTo("home")}
+          style={{
+            fontFamily: MONO,
+            fontWeight: 700,
+            fontSize: "18px",
+            color: "#00ffb2",
+            letterSpacing: "-0.02em",
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+            padding: 0,
+          }}
         >
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 29 29"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className={darkMode ? "text-white" : "text-black"}
-          >
-            <path
-              d="M26.6975 15.4613C26.4812 17.8018 25.6028 20.0323 24.1651 21.8919C22.7274 23.7514 20.7898 25.163 18.5791 25.9615C16.3684 26.7601 13.976 26.9125 11.6818 26.4009C9.38765 25.8894 7.28661 24.735 5.62456 23.073C3.9625 21.4109 2.80816 19.3099 2.29662 17.0157C1.78508 14.7216 1.93748 12.3292 2.736 10.1184C3.53453 7.90773 4.94614 5.97016 6.80566 4.53244C8.66519 3.09473 10.8957 2.21633 13.2362 2.00003C11.8659 3.8539 11.2065 6.13803 11.378 8.43698C11.5494 10.7359 12.5403 12.897 14.1704 14.5271C15.8005 16.1572 17.9616 17.1481 20.2606 17.3196C22.5595 17.491 24.8436 16.8316 26.6975 15.4613Z"
-              stroke="currentColor"
-              strokeWidth="4"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+          AMT
         </button>
 
-        {/* Desktop Menu */}
-        <div
-          className={`hidden md:flex gap-8 font-extralight items-center ${textClass}`}
-        >
-          {["home", "projects", "contact"].map((section) => (
-            <button
-              key={section}
-              onClick={() =>
-                section === "contact"
-                  ? handleContact()
-                  : scrollToSection(section)
-              }
-              className={`
-                relative cursor-pointer
-                after:content-[''] after:absolute after:left-0 after:bottom-0
-                after:h-[1px] after:w-0 ${afterClass}
-                after:transition-all after:duration-300 after:ease-out
-                hover:after:w-full
-                ${hoverTextClass}
-              `}
-            >
-              {section.charAt(0).toUpperCase() + section.slice(1)}
-            </button>
+        {/* Desktop */}
+        <div className="hidden md:flex" style={{ gap: "32px", alignItems: "center" }}>
+          {navLinks.map(({ label, id }) => (
+            <NavLink key={id} label={label} onClick={() => scrollTo(id)} />
           ))}
+          <NavLink label="Contact" onClick={openContact} />
+          <GhostButton onClick={downloadResume} label="Resume" />
         </div>
 
-        {/* Resume - Desktop */}
+        {/* Mobile hamburger */}
         <button
-          onClick={handleResumeDownload}
-          className={`hidden md:block text-white ${resumeBg} px-[10px] py-[6px] rounded-4xl cursor-pointer hover:scale-105 transition-all hover:shadow-2xl`}
-        >
-          <ShinyText text="Resume" disabled={false} speed={3} />
-        </button>
-
-        {/* Mobile Hamburger */}
-        <button
-          className="md:hidden flex flex-col gap-[3px]"
+          className="md:hidden"
           onClick={() => setIsOpen(!isOpen)}
+          style={{ background: "none", border: "none", cursor: "pointer", padding: "4px" }}
         >
-          <div className={`h-[3px] w-6 rounded bg-current ${textClass}`}></div>
-          <div className={`h-[3px] w-6 rounded bg-current ${textClass}`}></div>
-          <div className={`h-[3px] w-6 rounded bg-current ${textClass}`}></div>
+          {[0, 1, 2].map((i) => (
+            <div
+              key={i}
+              style={{
+                height: "2px",
+                width: "22px",
+                background: "#e5e2e1",
+                borderRadius: "2px",
+                marginBottom: i < 2 ? "5px" : 0,
+              }}
+            />
+          ))}
         </button>
       </div>
 
-      {/* Mobile Menu */}
       {isOpen && (
         <div
-          className={`md:hidden mt-4 flex flex-col gap-4 p-4 rounded-2xl ${
-            darkMode ? "bg-gray-900" : "bg-white"
-          } shadow-lg transition-all`}
+          style={{
+            background: "#1c1b1b",
+            border: "1px solid rgba(255,255,255,0.06)",
+            borderRadius: "4px",
+            padding: "16px",
+            marginTop: "8px",
+            display: "flex",
+            flexDirection: "column",
+            gap: "4px",
+          }}
         >
-          {["home", "projects", "contact"].map((section) => (
-            <button
-              key={section}
-              onClick={() =>
-                section === "contact"
-                  ? handleContact()
-                  : scrollToSection(section)
-              }
-              className={`text-lg ${textClass} ${hoverTextClass}`}
-            >
-              {section.charAt(0).toUpperCase() + section.slice(1)}
-            </button>
+          {navLinks.map(({ label, id }) => (
+            <MobileNavLink key={id} label={label} onClick={() => scrollTo(id)} />
           ))}
-
-          <button
-            onClick={handleResumeDownload}
-            className={`text-white ${resumeBg} mt-2 px-[10px] py-[8px] rounded-xl cursor-pointer hover:scale-105 transition-all`}
-          >
-            Resume
-          </button>
+          <MobileNavLink label="Contact" onClick={openContact} />
+          <div style={{ marginTop: "8px" }}>
+            <GhostButton onClick={downloadResume} label="Resume" fullWidth />
+          </div>
         </div>
       )}
-    </div>
+    </nav>
+  );
+}
+
+function NavLink({ label, onClick }) {
+  const [hovered, setHovered] = useState(false);
+  return (
+    <button
+      onClick={onClick}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        fontFamily: MONO,
+        fontSize: "12px",
+        fontWeight: 500,
+        letterSpacing: "0.05em",
+        textTransform: "uppercase",
+        color: hovered ? "#00ffb2" : "#b9cbbe",
+        background: "none",
+        border: "none",
+        cursor: "pointer",
+        transition: "color 0.2s",
+        padding: 0,
+      }}
+    >
+      {label}
+    </button>
+  );
+}
+
+function MobileNavLink({ label, onClick }) {
+  return (
+    <button
+      onClick={onClick}
+      style={{
+        fontFamily: MONO,
+        fontSize: "14px",
+        color: "#e5e2e1",
+        background: "none",
+        border: "none",
+        cursor: "pointer",
+        textAlign: "left",
+        padding: "10px 0",
+        borderBottom: "1px solid rgba(255,255,255,0.04)",
+      }}
+    >
+      {label}
+    </button>
+  );
+}
+
+function GhostButton({ onClick, label, fullWidth }) {
+  const [hovered, setHovered] = useState(false);
+  return (
+    <button
+      onClick={onClick}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        fontFamily: MONO,
+        fontSize: "12px",
+        fontWeight: 500,
+        letterSpacing: "0.05em",
+        textTransform: "uppercase",
+        color: hovered ? "#003824" : "#00ffb2",
+        background: hovered ? "#00ffb2" : "transparent",
+        border: "1px solid #00ffb2",
+        borderRadius: "4px",
+        padding: "7px 18px",
+        cursor: "pointer",
+        transition: "all 0.2s",
+        width: fullWidth ? "100%" : "auto",
+      }}
+    >
+      {label}
+    </button>
   );
 }
 

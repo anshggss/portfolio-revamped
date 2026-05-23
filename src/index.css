@@ -1,12 +1,32 @@
 @import "tailwindcss";
 
-html {
-  transition:
-    background-color 0.5s,
-    color 0.5s;
+@theme {
+  --font-mono: "JetBrains Mono", monospace;
+  --font-sans: "Geist", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
   padding: 0;
+  background-color: #131313;
+  color: #e5e2e1;
+  font-family: "Geist", sans-serif;
+}
+
+::selection {
+  background: #00ffb2;
+  color: #003824;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
